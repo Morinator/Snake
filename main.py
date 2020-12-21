@@ -33,8 +33,7 @@ while True:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 sys.exit()
-            if event.key in consts.input_movements:
-                s.direction = consts.input_movements[event.key]
+            s.update_direction(event.key)
 
     # game logic
     s.move(g)
