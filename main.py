@@ -24,9 +24,15 @@ clock = pg.time.Clock()
 
 while True:
     clock.tick(max_fps)
+
+    # events
     for event in pg.event.get():
         if event.type == pg.QUIT:
             sys.exit()
         if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             sys.exit()
+
+    # game logic
+    s.move(g)
+    # graphics
     update_graphics()

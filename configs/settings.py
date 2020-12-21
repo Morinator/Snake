@@ -1,4 +1,4 @@
-max_fps = 40
+max_fps = 7
 
 tile_size = 20
 grid_width = 20
