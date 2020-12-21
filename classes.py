@@ -19,12 +19,12 @@ class Snake:
             self.direction = point
 
     def move(self):
-        cur = self.positions[0]
+        curr = self.positions[0]
         x, y = self.direction
-        new = (((cur[0] + (x * tile_size)) % screen_width), (cur[1] + (y * tile_size)) % screen_height)
+        new = (((curr[0] + (x * tile_size)) % screen_width), (curr[1] + (y * tile_size)) % screen_height)
         if len(self.positions) > 2 and new in self.positions[2:]:
             self.__init__()
-        else:
+        else:  # snake doesn't hit itself
             self.positions.insert(0, new)
             if len(self.positions) > self.length:
                 self.positions.pop()

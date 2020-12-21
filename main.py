@@ -8,23 +8,16 @@ from configs.settings import *
 def drawGrid(surface):
     for y in range(0, grid_height):
         for x in range(0, grid_width):
-            if (x + y) % 2 == 0:
-                r = pygame.Rect((x * tile_size, y * tile_size), (tile_size, tile_size))
-                pygame.draw.rect(surface, grid_col_1, r)
-            else:
-                rr = pygame.Rect((x * tile_size, y * tile_size), (tile_size, tile_size))
-                pygame.draw.rect(surface, grid_col_2, rr)
+            r = (x * tile_size, y * tile_size, tile_size, tile_size)
+            col = grid_col_1 if (x + y) % 2 == 0 else grid_col_2
+            pygame.draw.rect(surface, col, r)
 
 
 def main():
     pygame.init()
     clock = pygame.time.Clock()
-    screen = pygame.display.set_mode((screen_width, screen_height), 0, 32)
-
-    surface = pygame.Surface(screen.get_size())
-    surface = surface.convert()
-    drawGrid(surface)
-
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    surface = pygame.Surface(screen.get_size()).convert()
     snake = Snake()
     food = Food()
 
@@ -40,8 +33,7 @@ def main():
         snake.draw(surface)
         food.draw(surface)
         screen.blit(surface, (0, 0))
-        text = pygame.font.SysFont("monospace", 16).render(f"Score {snake.score}", True, black)
-        screen.blit(text, (5, 10))
+        screen.blit(pygame.font.SysFont(score_font, size=16).render(f"Score {snake.score}", True, black), (5, 10))
         pygame.display.update()
 
 
