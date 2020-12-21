@@ -2,11 +2,11 @@ import sys
 
 import pygame as pg
 
+from classes import Food
 from configs.colors import grid_col_1, grid_col_2
 from configs.settings import *
 
 screen = pg.display.set_mode((screen_width, screen_height))
-from classes import *
 
 pg.init()
 
