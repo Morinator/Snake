@@ -42,6 +42,10 @@ class Snake:
             elif event.type == pygame.KEYDOWN and event.key in input_controls:
                 self.turn(input_controls[event.key])
 
+    def eat(self):
+        self.length += 1
+        self.score += 1
+
 
 class Food:
     def __init__(self):
