@@ -12,6 +12,7 @@ class Snake:
     def __init__(self, grid):
         self.blocks = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
+        self.max_length = 15
 
     def draw(self, surface):
         for block in self.blocks:
@@ -27,4 +28,5 @@ class Snake:
         new_block = (self.blocks[0][0] + self.direction[0]) % grid.width, \
                     (self.blocks[0][1] + self.direction[1]) % grid.height
         self.blocks.insert(0, new_block)
-        self.blocks.pop()
+        if len(self.blocks) > self.max_length:
+            self.blocks.pop()
