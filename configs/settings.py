@@ -1,10 +1,8 @@
-max_fps = 9
-
-screen_width = 360
-screen_height = 360
+max_fps = 40
 
 tile_size = 20
-grid_width = screen_width // tile_size
-grid_height = screen_height // tile_size
+grid_width = 20
+grid_height = 20
 
-score_font = "monospace"
+screen_width = tile_size * grid_width
+screen_height = tile_size * grid_height
