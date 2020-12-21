@@ -9,22 +9,17 @@ from configs.settings import tile_size, screen_height, screen_width, grid_width,
 class Snake:
     def __init__(self):
         self.length = 1
-        self.positions = [((screen_width / 2), (screen_height / 2))]
+        self.positions = [((screen_width // 2), (screen_height // 2))]
         self.direction = random.choice([up, down, left, right])
         self.score = 0
         self.color = snake_col
 
-    def head_pos(self):
-        return self.positions[0]
-
     def turn(self, point):
-        if self.length > 1 and (-point[0], -point[1]) == self.direction:
-            return
-        else:
+        if not (self.length > 1 and (-point[0], -point[1]) == self.direction):
             self.direction = point
 
     def move(self):
-        cur = self.head_pos()
+        cur = self.positions[0]
         x, y = self.direction
         new = (((cur[0] + (x * tile_size)) % screen_width), (cur[1] + (y * tile_size)) % screen_height)
         if len(self.positions) > 2 and new in self.positions[2:]:
@@ -36,7 +31,7 @@ class Snake:
 
     def draw(self, surface):
         for p in self.positions:
-            r = pygame.Rect((p[0], p[1]), (tile_size, tile_size))
+            r = pygame.Rect(p, (tile_size, tile_size))
             pygame.draw.rect(surface, self.color, r)
             pygame.draw.rect(surface, grid_col_1, r, width=2)
 
@@ -52,12 +47,9 @@ class Food:
     def __init__(self):
         self.position = (0, 0)
         self.color = food_col
-        self.randomize_pos()
-
-    def randomize_pos(self):
         self.position = random.randrange(grid_width) * tile_size, random.randrange(grid_height) * tile_size
 
     def draw(self, surface):
-        r = pygame.Rect((self.position[0], self.position[1]), [tile_size] * 2)
+        r = pygame.Rect(self.position, [tile_size] * 2)
         pygame.draw.rect(surface, self.color, r)
         pygame.draw.rect(surface, grid_col_1, r, width=2)

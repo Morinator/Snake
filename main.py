@@ -33,10 +33,10 @@ def main():
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
-        if snake.head_pos() == food.position:
+        if snake.positions[0] == food.position:
             snake.length += 1
             snake.score += 1
-            food.randomize_pos()
+            food = Food()
         snake.draw(surface)
         food.draw(surface)
         screen.blit(surface, (0, 0))
