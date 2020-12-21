@@ -1,9 +1,9 @@
 import random
 import sys
 
-from configs.colors import snake_col, food_col, grid_col_1
+from configs.colors import *
 from configs.game_constants import *
-from configs.settings import tile_size, screen_height, screen_width, grid_width, grid_height
+from configs.settings import *
 
 
 class Snake:
@@ -14,7 +14,7 @@ class Snake:
         self.score = 0
         self.color = snake_col
 
-    def turn(self, point):
+    def update_direction(self, point):
         if not (self.length > 1 and (-point[0], -point[1]) == self.direction):
             self.direction = point
 
@@ -22,6 +22,7 @@ class Snake:
         curr = self.positions[0]
         x, y = self.direction
         new = (((curr[0] + (x * tile_size)) % screen_width), (curr[1] + (y * tile_size)) % screen_height)
+
         if len(self.positions) > 2 and new in self.positions[2:]:
             self.__init__()
         else:  # snake doesn't hit itself
@@ -40,7 +41,7 @@ class Snake:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN and event.key in input_controls:
-                self.turn(input_controls[event.key])
+                self.update_direction(input_controls[event.key])
 
     def eat(self):
         self.length += 1
