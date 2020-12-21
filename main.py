@@ -32,18 +32,14 @@ def redraw_all(food, screen, snake, surface):
     pygame.display.update()
 
 
-def main():
-    clock, food, screen, snake, surface = make_inits()
+clock, food, screen, snake, surface = make_inits()
 
-    while True:
-        clock.tick(max_fps)
-        snake.handle_keys()
-        snake.move()
-        if snake.positions[0] == food.position:
-            snake.eat()
-            food = Food()
+while True:
+    clock.tick(max_fps)
+    snake.handle_keys()
+    snake.move()
+    if snake.positions[0] == food.position:
+        snake.eat()
+        food = Food()
 
-        redraw_all(food, screen, snake, surface)
-
-
-main()
+    redraw_all(food, screen, snake, surface)
