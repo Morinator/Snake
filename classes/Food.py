@@ -1,14 +1,12 @@
-import random
-
 import pygame as pg
 
 from configs.colors import food_col
-from configs.settings import grid_width, grid_height, tile_size
+from configs.settings import tile_size
 
 
 class Food:
-    def __init__(self):
-        self.pos = random.randrange(grid_width), random.randrange(grid_height)
+    def __init__(self, grid):
+        self.pos = grid.random_pos()
         self.col = food_col
 
     def draw(self, surface):
