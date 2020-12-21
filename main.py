@@ -2,6 +2,7 @@ import sys
 
 import pygame as pg
 
+import configs.game_constants as consts
 from classes.Food import Food
 from classes.Grid import Grid
 from classes.Snake import Snake
@@ -29,10 +30,14 @@ while True:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             sys.exit()
-        if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
-            sys.exit()
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                sys.exit()
+            if event.key in consts.input_movements:
+                s.direction = consts.input_movements[event.key]
 
     # game logic
     s.move(g)
+
     # graphics
     update_graphics()
