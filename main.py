@@ -1,8 +1,8 @@
 import pygame as pg
 
 pg.init()
-from configs.sound import laser, explosion, bite
-from classes.Food import Food
+from configs.sound import bite
+from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
 from configs.colors import *
@@ -11,28 +11,18 @@ import sys
 
 
 def update_graphics():
-    g.draw(screen)
-    f.draw(screen)
-    s.draw(screen)
-    screen.blit(font.render("Score : " + str(score_value), True, light_grey), text_pos)
+    [item.draw(screen) for item in [grid, apple, snake]]
+    screen.blit(font.render(f"Score : {score}", True, light_grey), text_pos)
     pg.display.update()
 
 
-def reset_game():
-    global s
-    global f
-    global score_value
-    s = Snake(g)
-    f = Food(g)
-    score_value = 0
-
-
-screen = pg.display.set_mode((screen_width, screen_height))
-g = Grid(grid_width, grid_height)
-f = Food(g)
-s = Snake(g)
+screen = pg.display.set_mode(screen_size)
+grid = Grid(grid_width, grid_height)
+apple = Apple(grid)
+snake = Snake(grid)
 clock = pg.time.Clock()
-score_value = 0
+score = 0
+
 while True:
     clock.tick(max_fps)
 
@@ -42,16 +32,15 @@ while True:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
                 sys.exit()
-            s.update_direction(event.key)
+            snake.update_direction(event.key)
 
-    has_collided = s.move(g)
+    has_collided = snake.move(grid)
     if has_collided:
-        explosion.play()
-        reset_game()
+        sys.exit()
 
-    if f.pos == s.blocks[0]:
-        s.length += 1
-        f = Food(g)
-        score_value += 1
+    if apple.pos == snake.blocks[0]:
+        snake.length += 1
+        apple = Apple(grid)
+        score += 1
         bite.play()
     update_graphics()
