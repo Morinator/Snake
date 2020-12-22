@@ -28,7 +28,7 @@ class Snake:
 
     def move(self, grid):
         new_head = self.blocks[0][0] + self.direction[0], self.blocks[0][1] + self.direction[1]
-        if not (0 < new_head[0] < grid.width and 0 < new_head[1] < grid.height):
+        if not (0 <= new_head[0] < grid.width and 0 <= new_head[1] < grid.height):
             laser.play()
         new_head = new_head[0] % grid.width, new_head[1] % grid.height
 

@@ -2,7 +2,7 @@ import pygame as pg
 
 max_fps = 7
 
-tile_size = 30
+tile_size = 50
 grid_width = 15
 grid_height = 15
 

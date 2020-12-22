@@ -25,7 +25,6 @@ def reset_game():
     s = Snake(g)
     f = Food(g)
     score_value = 0
-    pg.time.delay(1000)
 
 
 screen = pg.display.set_mode((screen_width, screen_height))
