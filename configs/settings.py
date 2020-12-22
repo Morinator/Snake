@@ -4,8 +4,8 @@ import pygame as pg
 grid_size = 15, 15
 
 # graphics
-max_fps = 6
-tile_size = 50
+max_fps = 5
+tile_size = 40
 screen_size = tile_size * grid_size[0], tile_size * grid_size[1]
 
 # text

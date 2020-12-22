@@ -2,7 +2,7 @@ import random
 
 import pygame as pg
 
-from configs.colors import grid_color_1, grid_color_2
+from configs.colors import light_green, dark_green
 from configs.settings import tile_size
 
 
@@ -14,7 +14,7 @@ class Grid:
     def draw(self, surface):
         for x in range(self.width):
             for y in range(self.height):
-                color = grid_color_1 if (x + y) % 2 == 0 else grid_color_2
+                color = light_green if (x + y) % 2 == 0 else dark_green
                 pg.draw.rect(surface, color, pg.Rect(x * tile_size, y * tile_size, tile_size, tile_size))
 
     def random_pos(self):

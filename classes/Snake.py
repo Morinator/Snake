@@ -2,7 +2,7 @@ import random
 
 import pygame as pg
 
-from configs.colors import snake_color, snake_eat_color
+from configs.colors import snake_yellow, snake_brown
 from configs.game_constants import right, left, down, up, arrow_key_to_direction
 from configs.settings import tile_size
 from configs.sound import teleportation_sound, munch_sound
@@ -13,7 +13,7 @@ class Snake:
         self.li = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
         self.length = 3
-        self.col = snake_color
+        self.col = snake_yellow
         self.eat_cd = 0
 
     def draw(self, surface):
@@ -42,7 +42,7 @@ class Snake:
 
     def update_color(self):
         self.eat_cd = max(0, self.eat_cd - 1)
-        self.col = snake_color if self.eat_cd == 0 else snake_eat_color
+        self.col = snake_yellow if self.eat_cd == 0 else snake_brown
 
     def eat(self):
         self.length += 1
