@@ -1,9 +1,10 @@
 import pygame as pg
 
-music_path = "assets/sounds/mario.mp3"
-pg.mixer.music.load(music_path)
+# music
+pg.mixer.music.load("assets/sounds/mario.mp3")
 pg.mixer.music.set_volume(0.75)
 pg.mixer.music.play()
 
-bite = pg.mixer.Sound("assets/sounds/bite.wav")
+# sounds
+munch = pg.mixer.Sound("assets/sounds/munch.wav")
 teleport = pg.mixer.Sound("assets/sounds/teleport.wav")
