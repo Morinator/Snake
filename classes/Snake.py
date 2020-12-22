@@ -5,13 +5,14 @@ import pygame as pg
 from configs.colors import snake_col, grid_col_1
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
+from configs.sound import explosion
 
 
 class Snake:
     def __init__(self, grid):
         self.blocks = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
-        self.max_length = 1
+        self.length = 4
 
     def draw(self, surface):
         for block in self.blocks:
@@ -30,11 +31,12 @@ class Snake:
         self.blocks.insert(0, new_block)
         if self.blocks[0] in self.blocks[1:]:
             print("versaaagt")
-        if len(self.blocks) > self.max_length:
+            explosion.play()
+        if len(self.blocks) > self.length:
             self.blocks.pop()
 
     def grow(self, amount=1):
-        self.max_length += amount
+        self.length += amount
 
     def check_food(self, food):
         return food.pos == self.blocks[0]
