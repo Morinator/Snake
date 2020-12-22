@@ -22,21 +22,19 @@ class Snake:
 
     def update_direction(self, key):
         d = input_movements[key]
-        if key in input_movements and (-d[0], - d[1]) != self.direction:
+        valid_direction = self.length >= 2 and (d[0] + self.blocks[0][0], d[1] + self.blocks[0][1]) != self.blocks[1]
+        if key in input_movements and valid_direction:
             self.direction = d
 
     def move(self, grid):
-        """:returns True if the snake collied with itself"""
-        new_block = self.blocks[0][0] + self.direction[0], self.blocks[0][1] + self.direction[1]
-
-        if not (0 < new_block[0] < grid.width and 0 < new_block[1] < grid.height):
+        new_head = self.blocks[0][0] + self.direction[0], self.blocks[0][1] + self.direction[1]
+        if not (0 < new_head[0] < grid.width and 0 < new_head[1] < grid.height):
             laser.play()
+        new_head = new_head[0] % grid.width, new_head[1] % grid.height
 
-        new_block = new_block[0] % grid.width, new_block[1] % grid.height
-
-        self.blocks.insert(0, new_block)
+        self.blocks.insert(0, new_head)
 
         if len(self.blocks) > self.length:  # trim tail of snake
             self.blocks.pop()
 
-        return self.blocks[0] in self.blocks[1:]
+        return self.blocks[0] in self.blocks[1:]  # check for collision
