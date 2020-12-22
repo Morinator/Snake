@@ -1,7 +1,7 @@
 import pygame as pg
 
 pg.init()
-from configs.sound import munch
+from configs.sound import munch_sound
 from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
@@ -43,5 +43,5 @@ while True:
         snake.length += 1
         apple = Apple(grid)
         score += 1
-        munch.play()
+        munch_sound.play()
     update_all_graphics()

@@ -5,7 +5,7 @@ import pygame as pg
 from configs.colors import snake_color
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
-from configs.sound import teleport_sound
+from configs.sound import teleportation_sound
 
 
 class Snake:
@@ -30,7 +30,7 @@ class Snake:
     def move(self, grid):
         new_head = self.li[0][0] + self.direction[0], self.li[0][1] + self.direction[1]
         if not (0 <= new_head[0] < grid.width and 0 <= new_head[1] < grid.height):
-            teleport_sound.play()
+            teleportation_sound.play()
         new_head = new_head[0] % grid.width, new_head[1] % grid.height
 
         self.li.insert(0, new_head)
