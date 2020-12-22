@@ -1,13 +1,13 @@
-import sys
-
 import pygame as pg
 
 pg.init()
+from configs.sound import laser
 from classes.Food import Food
 from classes.Grid import Grid
 from classes.Snake import Snake
 from configs.colors import black
 from configs.settings import *
+import sys
 
 
 def update_graphics():
@@ -24,7 +24,6 @@ f = Food(g)
 s = Snake(g)
 clock = pg.time.Clock()
 score_value = 0
-laser = pg.mixer.Sound("assets/sounds/laser.wav")
 while True:
     clock.tick(max_fps)
 
@@ -40,6 +39,6 @@ while True:
     if s.check_food(f):
         s.grow()
         f = Food(g)
-        score_value+=1
+        score_value += 1
         laser.play()
     update_graphics()
