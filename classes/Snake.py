@@ -5,7 +5,6 @@ import pygame as pg
 from configs.colors import snake_col, grid_col_1
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
-from configs.sound import explosion
 
 
 class Snake:
@@ -26,17 +25,12 @@ class Snake:
             self.direction = d
 
     def move(self, grid):
+        """:returns True if the snake collied with itself"""
         new_block = (self.blocks[0][0] + self.direction[0]) % grid.width, \
                     (self.blocks[0][1] + self.direction[1]) % grid.height
         self.blocks.insert(0, new_block)
-        if self.blocks[0] in self.blocks[1:]:
-            print("versaaagt")
-            explosion.play()
-        if len(self.blocks) > self.length:
+
+        if len(self.blocks) > self.length:  # trim tail of snake
             self.blocks.pop()
-
-    def grow(self, amount=1):
-        self.length += amount
-
-    def check_food(self, food):
-        return food.pos == self.blocks[0]
+            
+        return self.blocks[0] in self.blocks[1:]

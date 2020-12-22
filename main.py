@@ -1,7 +1,7 @@
 import pygame as pg
 
 pg.init()
-from configs.sound import laser
+from configs.sound import laser, explosion
 from classes.Food import Food
 from classes.Grid import Grid
 from classes.Snake import Snake
@@ -16,6 +16,16 @@ def update_graphics():
     s.draw(screen)
     screen.blit(font.render("Score : " + str(score_value), True, light_grey), text_pos)
     pg.display.update()
+
+
+def reset_game():
+    global s
+    global f
+    global score_value
+    s = Snake(g)
+    f = Food(g)
+    score_value = 0
+    pg.time.delay(1000)
 
 
 screen = pg.display.set_mode((screen_width, screen_height))
@@ -35,9 +45,13 @@ while True:
                 sys.exit()
             s.update_direction(event.key)
 
-    s.move(g)
-    if s.check_food(f):
-        s.grow()
+    has_collided = s.move(g)
+    if has_collided:
+        explosion.play()
+        reset_game()
+
+    if f.pos == s.blocks[0]:
+        s.length += 1
         f = Food(g)
         score_value += 1
         laser.play()
