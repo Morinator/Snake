@@ -1,13 +1,14 @@
 import pygame as pg
 
 # gameplay
-grid_size = 15, 15
+GRID_SIZE = 15, 15
+STARTING_LENGTH = 1
 
 # graphics
-max_fps = 5
-tile_size = 40
-screen_size = tile_size * grid_size[0], tile_size * grid_size[1]
-
+MAX_FPS = 5
+TILE_SIZE = 40
+SCREEN_SIZE = TILE_SIZE * GRID_SIZE[0], TILE_SIZE * GRID_SIZE[1]
+APPLE_SIZE = -10
 # text
-text_pos = 10, 10
-font = pg.font.Font('freesansbold.ttf', int(0.08 * screen_size[0]))
+TEXT_POS = 10, 10
+FONT = pg.font.Font('freesansbold.ttf', int(0.08 * SCREEN_SIZE[0]))

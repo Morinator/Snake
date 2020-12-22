@@ -1,7 +1,7 @@
 import pygame as pg
 
-from configs.colors import apple_red
-from configs.settings import tile_size
+from configs.colors import APPLE_RED
+from configs.settings import TILE_SIZE, APPLE_SIZE
 
 
 class Apple:
@@ -9,5 +9,5 @@ class Apple:
         self.pos = grid.random_pos()
 
     def draw(self, surface):
-        r = pg.Rect((self.pos[0] * tile_size, self.pos[1] * tile_size), [tile_size] * 2).inflate(-10, -10)
-        pg.draw.rect(surface, apple_red, r)
+        r = pg.Rect((self.pos[0] * TILE_SIZE, self.pos[1] * TILE_SIZE), [TILE_SIZE] * 2).inflate([APPLE_SIZE] * 2)
+        pg.draw.rect(surface, APPLE_RED, r)

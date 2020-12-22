@@ -1,7 +1,6 @@
 import pygame as pg
 
 pg.init()
-from configs.sound import munch_sound
 from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
@@ -12,20 +11,20 @@ import sys
 
 def update_all_graphics():
     [item.draw(screen) for item in [grid, apple, snake]]
-    screen.blit(font.render(f"Score: {score}", True, light_grey), text_pos)
+    screen.blit(FONT.render(f"Score: {score}", True, LIGHT_GREY), TEXT_POS)
     pg.display.update()
 
 
-screen = pg.display.set_mode(screen_size)
+screen = pg.display.set_mode(SCREEN_SIZE)
 clock = pg.time.Clock()
 score = 0
 
-grid = Grid(*grid_size)
+grid = Grid(*GRID_SIZE)
 apple = Apple(grid)
 snake = Snake(grid)
 
 while True:
-    clock.tick(max_fps)
+    clock.tick(MAX_FPS)
 
     for event in pg.event.get():  # event handling
         if event.type == pg.QUIT:
