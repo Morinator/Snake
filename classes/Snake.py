@@ -5,6 +5,7 @@ import pygame as pg
 from configs.colors import snake_col, grid_col_1
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
+from configs.sound import laser
 
 
 class Snake:
@@ -26,11 +27,16 @@ class Snake:
 
     def move(self, grid):
         """:returns True if the snake collied with itself"""
-        new_block = (self.blocks[0][0] + self.direction[0]) % grid.width, \
-                    (self.blocks[0][1] + self.direction[1]) % grid.height
+        new_block = self.blocks[0][0] + self.direction[0], self.blocks[0][1] + self.direction[1]
+
+        if not (0 < new_block[0] < grid.width and 0 < new_block[1] < grid.height):
+            laser.play()
+
+        new_block = new_block[0] % grid.width, new_block[1] % grid.height
+
         self.blocks.insert(0, new_block)
 
         if len(self.blocks) > self.length:  # trim tail of snake
             self.blocks.pop()
-            
+
         return self.blocks[0] in self.blocks[1:]

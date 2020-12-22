@@ -1,7 +1,7 @@
 import pygame as pg
 
 pg.init()
-from configs.sound import laser, explosion
+from configs.sound import laser, explosion, bite
 from classes.Food import Food
 from classes.Grid import Grid
 from classes.Snake import Snake
@@ -54,5 +54,5 @@ while True:
         s.length += 1
         f = Food(g)
         score_value += 1
-        laser.play()
+        bite.play()
     update_graphics()
