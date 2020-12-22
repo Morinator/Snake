@@ -24,7 +24,7 @@ f = Food(g)
 s = Snake(g)
 clock = pg.time.Clock()
 score_value = 0
-
+laser = pg.mixer.Sound("assets/sounds/laser.wav")
 while True:
     clock.tick(max_fps)
 
@@ -41,4 +41,5 @@ while True:
         s.grow()
         f = Food(g)
         score_value+=1
+        laser.play()
     update_graphics()
