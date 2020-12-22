@@ -17,7 +17,7 @@ def update_graphics():
 
 
 screen = pg.display.set_mode(screen_size)
-grid = Grid(grid_width, grid_height)
+grid = Grid(*grid_size)
 apple = Apple(grid)
 snake = Snake(grid)
 clock = pg.time.Clock()

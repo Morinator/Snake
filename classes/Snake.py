@@ -2,7 +2,7 @@ import random
 
 import pygame as pg
 
-from configs.colors import snake_col, grid_col_1
+from configs.colors import snake_col
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
 from configs.sound import teleport
@@ -12,13 +12,12 @@ class Snake:
     def __init__(self, grid):
         self.blocks = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
-        self.length = 3
+        self.length = 1
 
     def draw(self, surface):
         for block in self.blocks:
-            rect = pg.Rect((block[0] * tile_size, block[1] * tile_size), [tile_size] * 2)
+            rect = pg.Rect((block[0] * tile_size, block[1] * tile_size), [tile_size] * 2).inflate(-2, -2)
             pg.draw.rect(surface, snake_col, rect)
-            pg.draw.rect(surface, grid_col_1, rect, width=2)
 
     def update_direction(self, key):
         d = input_movements[key]
