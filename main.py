@@ -12,7 +12,7 @@ import sys
 
 def update_all_graphics():
     [item.draw(screen) for item in [grid, apple, snake]]
-    screen.blit(font.render(f"Score : {score}", True, light_grey), text_pos)
+    screen.blit(font.render(f"Score: {score}", True, light_grey), text_pos)
     pg.display.update()
 
 
