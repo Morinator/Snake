@@ -8,4 +8,4 @@ grid_color_2 = 158, 207, 71  # darker green
 apple_color = 230, 48, 62  # red
 
 snake_color = 222, 141, 33  # yellow
-snake_hit_color = 137, 75, 2  # yellow/brown mix
+snake_eat_color = 137, 75, 2  # yellow/brown mix

@@ -2,8 +2,8 @@ import random
 
 import pygame as pg
 
-from configs.colors import snake_color
-from configs.game_constants import right, left, down, up, input_movements
+from configs.colors import snake_color, snake_eat_color
+from configs.game_constants import right, left, down, up, arrow_key_to_direction
 from configs.settings import tile_size
 from configs.sound import teleportation_sound
 
@@ -22,9 +22,9 @@ class Snake:
             pg.draw.rect(surface, self.col, rect)
 
     def update_direction(self, key):
-        d = input_movements[key]
+        d = arrow_key_to_direction[key]
         valid_direction = self.length < 2 or (d[0] + self.li[0][0], d[1] + self.li[0][1]) != self.li[1]
-        if key in input_movements and valid_direction:
+        if key in arrow_key_to_direction and valid_direction:
             self.direction = d
 
     def move(self, grid):
@@ -39,3 +39,7 @@ class Snake:
             self.li.pop()
 
         return self.li[0] in self.li[1:]  # check for collision
+
+    def update_color(self):
+        self.eat_cd = max(0, self.eat_cd - 1)
+        self.col = snake_color if self.eat_cd == 0 else snake_eat_color

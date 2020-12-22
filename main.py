@@ -36,12 +36,15 @@ while True:
             snake.update_direction(event.key)
 
     has_collided = snake.move(grid)
+    snake.update_color()
     if has_collided:
         sys.exit()
 
-    if snake.li[0] == apple.pos:
+    if snake.li[0] == apple.pos:  # snake eats
         snake.length += 1
+        snake.eat_cd = 2
         apple = Apple(grid)
         score += 1
         munch_sound.play()
+
     update_all_graphics()
