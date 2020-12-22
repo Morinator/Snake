@@ -5,7 +5,7 @@ from configs.sound import laser
 from classes.Food import Food
 from classes.Grid import Grid
 from classes.Snake import Snake
-from configs.colors import black
+from configs.colors import *
 from configs.settings import *
 import sys
 
@@ -14,7 +14,7 @@ def update_graphics():
     g.draw(screen)
     f.draw(screen)
     s.draw(screen)
-    screen.blit(font.render("Score : " + str(score_value), True, black), text_pos)
+    screen.blit(font.render("Score : " + str(score_value), True, light_grey), text_pos)
     pg.display.update()
 
 
