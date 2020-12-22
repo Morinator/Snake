@@ -7,4 +7,4 @@ pg.mixer.music.play()
 
 # sounds
 munch = pg.mixer.Sound("assets/sounds/munch.wav")
-teleport = pg.mixer.Sound("assets/sounds/teleport.wav")
+teleport_sound = pg.mixer.Sound("assets/sounds/teleport.wav")

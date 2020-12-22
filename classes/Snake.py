@@ -5,7 +5,7 @@ import pygame as pg
 from configs.colors import snake_color
 from configs.game_constants import right, left, down, up, input_movements
 from configs.settings import tile_size
-from configs.sound import teleport
+from configs.sound import teleport_sound
 
 
 class Snake:
@@ -13,11 +13,13 @@ class Snake:
         self.li = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
         self.length = 1
+        self.col = snake_color
+        self.eat_cd = 0
 
     def draw(self, surface):
         for i in self.li:
             rect = pg.Rect((i[0] * tile_size, i[1] * tile_size), [tile_size] * 2).inflate(-2, -2)
-            pg.draw.rect(surface, snake_color, rect)
+            pg.draw.rect(surface, self.col, rect)
 
     def update_direction(self, key):
         d = input_movements[key]
@@ -28,7 +30,7 @@ class Snake:
     def move(self, grid):
         new_head = self.li[0][0] + self.direction[0], self.li[0][1] + self.direction[1]
         if not (0 <= new_head[0] < grid.width and 0 <= new_head[1] < grid.height):
-            teleport.play()
+            teleport_sound.play()
         new_head = new_head[0] % grid.width, new_head[1] % grid.height
 
         self.li.insert(0, new_head)
