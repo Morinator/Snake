@@ -12,7 +12,7 @@ class Snake:
     def __init__(self, grid):
         self.li = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
-        self.length = 3
+        self.length = 1
         self.col = snake_yellow
         self.eat_cd = 0
 
@@ -23,7 +23,7 @@ class Snake:
 
     def update_direction(self, key):
         d = arrow_key_to_direction[key]
-        valid_direction = self.length < 2 or (d[0] + self.li[0][0], d[1] + self.li[0][1]) != self.li[1]
+        valid_direction = len(self.li) < 2 or (d[0] + self.li[0][0], d[1] + self.li[0][1]) != self.li[1]
         if key in arrow_key_to_direction and valid_direction:
             self.direction = d
 
