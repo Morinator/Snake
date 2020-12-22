@@ -8,7 +8,6 @@ from configs.settings import tile_size
 
 
 class Snake:
-
     def __init__(self, grid):
         self.blocks = [grid.random_pos()]
         self.direction = random.choice([up, down, left, right])
@@ -29,10 +28,12 @@ class Snake:
         new_block = (self.blocks[0][0] + self.direction[0]) % grid.width, \
                     (self.blocks[0][1] + self.direction[1]) % grid.height
         self.blocks.insert(0, new_block)
+        if self.blocks[0] in self.blocks[1:]:
+            print("versaaagt")
         if len(self.blocks) > self.max_length:
             self.blocks.pop()
 
-    def grow(self, amount = 1):
+    def grow(self, amount=1):
         self.max_length += amount
 
     def check_food(self, food):
