@@ -22,10 +22,11 @@ class Snake:
             pg.draw.rect(surface, self.col, rect)
 
     def update_direction(self, key):
-        d = arrow_key_to_direction[key]
-        valid_direction = len(self.li) < 2 or (d[0] + self.li[0][0], d[1] + self.li[0][1]) != self.li[1]
-        if key in arrow_key_to_direction and valid_direction:
-            self.direction = d
+        if key in arrow_key_to_direction:
+            d = arrow_key_to_direction[key]
+            valid_direction = len(self.li) < 2 or (d[0] + self.li[0][0], d[1] + self.li[0][1]) != self.li[1]
+            if valid_direction:
+                self.direction = d
 
     def move(self, grid):
         new_head = self.li[0][0] + self.direction[0], self.li[0][1] + self.direction[1]
