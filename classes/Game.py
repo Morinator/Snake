@@ -20,26 +20,27 @@ class Game:
         self.clock = pg.time.Clock()
         self.paused = False
         self.finished = False
+        self.curr_events = None
 
     def run(self):
         while not self.finished:
             self.clock.tick(MAX_FPS)
-
-            for event in pg.event.get():
+            self.curr_events = pg.event.get()
+            for event in self.curr_events:
                 if event.type == pg.QUIT:
                     sys.exit()
                 if event.type == pg.KEYDOWN:
-                    if event.key == pg.K_ESCAPE:
-                        sys.exit()
-                    if event.key == pg.K_p:
+                    if event.key in [pg.K_ESCAPE, pg.K_p]:
                         self.paused = not self.paused
-
-                    self.snake.update_direction(event.key)
             if not self.paused:
                 self.update_state()
             self.draw(self.screen)
 
     def update_state(self):
+        for event in self.curr_events:
+            if event.type == pg.KEYDOWN:
+                self.snake.update_direction(event.key)
+
         has_collided = self.snake.move(self.grid)
         self.snake.update_color()
         if has_collided:
@@ -63,8 +64,8 @@ class Game:
         time.sleep(0.7)
 
     def show_end_screen(self):
-        self.screen.blit(FONT.render("Erneut versagt, du Narr", True, RED), (10, 200))
-        self.screen.blit(FONT.render("Klicken zum Beenden", True, RED), (10, 400))
+        self.screen.blit(FONT.render("Erneut versagt, du Narr", True, RED), (25, 200))
+        self.screen.blit(FONT.render("Klicken zum Beenden", True, RED), (25, 400))
         pg.display.update()
         while True:
             self.clock.tick(MAX_FPS)
