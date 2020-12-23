@@ -3,6 +3,7 @@ import numpy as np
 BLACK = 0, 0, 0
 LIGHT_GREY = 60, 60, 60
 WHITE = 255, 255, 255
+RED = 103, 3, 3
 
 LIGHT_GREEN = 130, 185, 65
 DARK_GREEN = np.array(LIGHT_GREEN) * 0.95
