@@ -22,11 +22,10 @@ score = 0
 grid = Grid(*GRID_SIZE)
 apple = Apple(grid)
 snake = Snake(grid)
-
 while True:
     clock.tick(MAX_FPS)
 
-    for event in pg.event.get():  # event handling
+    for event in pg.event.get():
         if event.type == pg.QUIT:
             sys.exit()
         if event.type == pg.KEYDOWN:
@@ -39,7 +38,7 @@ while True:
     if has_collided:
         sys.exit()
 
-    if snake.li[0] == apple.pos:  # snake eats
+    if snake.li[0] == apple.pos:
         snake.eat()
         apple = Apple(grid)
         score += 1
