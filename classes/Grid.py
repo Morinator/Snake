@@ -2,8 +2,8 @@ import random
 
 import pygame as pg
 
-from configs.colors import LIGHT_GREEN, DARK_GREEN
-from configs.settings import TILE_SIZE
+from constants.colors import LIGHT_GREEN, DARK_GREEN
+from constants.settings import TILE_SIZE
 
 
 class Grid:

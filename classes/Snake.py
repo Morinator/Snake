@@ -2,10 +2,10 @@ import random
 
 import pygame as pg
 
-from configs.colors import SNAKE_YELLOW, SNAKE_BROWN
-from configs.game_constants import right, left, down, up, arrow_key_to_direction
-from configs.settings import TILE_SIZE, STARTING_LENGTH
-from configs.sound import TELEPORTATION_SOUND, MUNCH_SOUND
+from constants.colors import SNAKE_YELLOW, SNAKE_BROWN
+from constants.game_constants import right, left, down, up, arrow_key_to_direction
+from constants.settings import TILE_SIZE, STARTING_LENGTH
+from constants.sound import TELEPORTATION_SOUND, MUNCH_SOUND
 
 
 class Snake:

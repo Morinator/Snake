@@ -1,13 +1,12 @@
 import sys
-import time
 
 import pygame as pg
 
 from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
-from configs.colors import LIGHT_GREY, RED
-from configs.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, TEXT_POS
+from constants.colors import LIGHT_GREY, RED
+from constants.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, TEXT_POS
 
 
 class Game:
@@ -58,17 +57,10 @@ class Game:
             self.screen.blit(FONT.render("Paused", True, RED), (200, 200))
         pg.display.update()
 
-    def show_start_screen(self):
-        self.screen.blit(FONT.render("Welcome", True, RED), (200, 200))
-        pg.display.update()
-        time.sleep(0.7)
-
     def show_end_screen(self):
         self.screen.blit(FONT.render("Erneut versagt, du Narr", True, RED), (25, 200))
         self.screen.blit(FONT.render("Klicken zum Beenden", True, RED), (25, 400))
         pg.display.update()
         while True:
             self.clock.tick(MAX_FPS)
-            for event in pg.event.get():
-                if event.type in [pg.MOUSEBUTTONDOWN, pg.QUIT]:
-                    sys.exit()
+            [sys.exit() for event in pg.event.get() if event.type in [pg.MOUSEBUTTONDOWN, pg.QUIT]]

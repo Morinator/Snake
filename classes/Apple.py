@@ -1,7 +1,7 @@
 import pygame as pg
 
-from configs.colors import APPLE_RED
-from configs.settings import TILE_SIZE, APPLE_SIZE
+from constants.colors import APPLE_RED
+from constants.settings import TILE_SIZE, APPLE_SIZE
 
 
 class Apple:
