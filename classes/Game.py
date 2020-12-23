@@ -1,6 +1,8 @@
 import sys
+import time
 
 import pygame as pg
+from pygments.styles.paraiso_dark import RED
 
 from classes.Apple import Apple
 from classes.Grid import Grid
@@ -48,4 +50,6 @@ class Game:
             self.draw(self.screen)
 
     def show_start_screen(self):
-        pass
+        self.screen.blit(FONT.render("Welcome", True, RED), (200, 200))
+        pg.display.update()
+        time.sleep(0.7)
