@@ -6,7 +6,7 @@ from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
 from constants.colors import LIGHT_GREY, RED
-from constants.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, SCORE_POS, LIVES_POS
+from constants.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, SCORE_POS, LIVES_POS, STARTING_LIVES
 
 
 class Game:
@@ -19,7 +19,7 @@ class Game:
         self.clock = pg.time.Clock()
         self.paused = False
         self.curr_events = None
-        self.lives = 3
+        self.lives = STARTING_LIVES
 
     def run(self):
         while self.lives > 0:
