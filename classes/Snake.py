@@ -5,7 +5,7 @@ import pygame as pg
 from constants.colors import SNAKE_YELLOW, SNAKE_BROWN
 from constants.game_constants import right, left, down, up, arrow_key_to_direction
 from constants.settings import TILE_SIZE, STARTING_LENGTH
-from constants.sound import TELEPORTATION_SOUND, MUNCH_SOUND
+from constants.sound import TELEPORTATION_SOUND, MUNCH_SOUND, EXPLOSION_SOUNDS
 
 
 class Snake:
@@ -39,7 +39,10 @@ class Snake:
         if len(self.li) > self.length:  # trim tail of snake
             self.li.pop()
 
-        return self.li[0] in self.li[1:]  # check for collision
+        collides = self.li[0] in self.li[1:]
+        if collides:
+            random.choice(EXPLOSION_SOUNDS).play()
+        return collides
 
     def update_color(self):
         self.eat_cd = max(0, self.eat_cd - 1)
