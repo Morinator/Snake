@@ -18,11 +18,11 @@ class Game:
         self.screen = pg.display.set_mode(SCREEN_SIZE)
         self.clock = pg.time.Clock()
         self.paused = False
-        self.finished = False
         self.curr_events = None
+        self.lives = 1
 
     def run(self):
-        while not self.finished:
+        while self.lives > 0:
             self.clock.tick(MAX_FPS)
             self.curr_events = pg.event.get()
             for event in self.curr_events:
@@ -43,7 +43,7 @@ class Game:
         has_collided = self.snake.move(self.grid)
         self.snake.update_color()
         if has_collided:
-            self.finished = True
+            self.lives -= 1
 
         if self.snake.li[0] == self.apple.pos:
             self.snake.eat()
