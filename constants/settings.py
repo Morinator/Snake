@@ -12,5 +12,6 @@ APPLE_SIZE = -(TILE_SIZE * 0.2)
 SNAKE_SIZE = -(TILE_SIZE * 0.1)
 
 # text
-TEXT_POS = 10, 10
-FONT = pg.font.Font(pg.font.match_font('arial'), int(0.08 * SCREEN_SIZE[0]))
+SCORE_POS = 10, 10
+LIVES_POS = 0.77 * (GRID_SIZE[1] * TILE_SIZE), 10
+FONT = pg.font.Font(pg.font.match_font('arial'), int(0.06 * SCREEN_SIZE[0]))

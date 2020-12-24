@@ -6,7 +6,7 @@ from classes.Apple import Apple
 from classes.Grid import Grid
 from classes.Snake import Snake
 from constants.colors import LIGHT_GREY, RED
-from constants.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, TEXT_POS
+from constants.settings import SCREEN_SIZE, GRID_SIZE, MAX_FPS, FONT, SCORE_POS, LIVES_POS
 
 
 class Game:
@@ -19,7 +19,7 @@ class Game:
         self.clock = pg.time.Clock()
         self.paused = False
         self.curr_events = None
-        self.lives = 1
+        self.lives = 3
 
     def run(self):
         while self.lives > 0:
@@ -52,7 +52,10 @@ class Game:
 
     def draw(self, screen):
         [item.draw(screen) for item in [self.grid, self.apple, self.snake]]
-        screen.blit(FONT.render(f"Score: {self.score}", True, LIGHT_GREY), TEXT_POS)
+        screen.blit(FONT.render(f"Score: {self.score}", True, LIGHT_GREY), SCORE_POS)
+        screen.blit(FONT.render(f"Lives: {self.lives}", True, LIGHT_GREY), LIVES_POS)
+
+
         if self.paused:
             self.screen.blit(FONT.render("Paused", True, RED), (200, 200))
         pg.display.update()
