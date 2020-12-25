@@ -55,7 +55,6 @@ class Game:
         screen.blit(FONT.render(f"Score: {self.score}", True, LIGHT_GREY), SCORE_POS)
         screen.blit(FONT.render(f"Lives: {self.lives}", True, LIGHT_GREY), LIVES_POS)
 
-
         if self.paused:
             self.screen.blit(FONT.render("Paused", True, RED), (200, 200))
         pg.display.update()
