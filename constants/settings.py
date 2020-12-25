@@ -4,7 +4,7 @@ import pygame as pg
 GRID_SIZE = 15, 15
 STARTING_LENGTH = 1
 MAX_FPS = 6
-STARTING_LIVES = 3
+STARTING_LIVES = 1
 
 # graphics
 TILE_SIZE = 40
