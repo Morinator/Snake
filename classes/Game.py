@@ -45,7 +45,7 @@ class Game:
         if has_collided:
             self.lives -= 1
 
-        if self.snake.li[0] == self.apple.pos:
+        if self.snake.parts[0] == self.apple.pos:
             self.snake.eat()
             self.apple = Apple(self.grid)
             self.score += 1
